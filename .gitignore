@@ -1,0 +1,6 @@
+.pydevproject
+.project
+.settings/
+*.py[co]
+*.pyo
+thumbs.db
