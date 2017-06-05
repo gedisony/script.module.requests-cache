@@ -1,7 +1,7 @@
 script.module.requests-cache
 ======================
 
-Python requests-cache library packed for KODI.
+Python [requests-cache](https://github.com/reclosedev/requests-cache) library packed for KODI.
 
 ```
 import requests_cache
