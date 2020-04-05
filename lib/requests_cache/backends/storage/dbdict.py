@@ -6,7 +6,11 @@
 
     Dictionary-like objects for saving large data sets to `sqlite` database
 """
-from collections import MutableMapping
+try:
+    from collections.abc import MutableMapping
+except ImportError:
+    from collections import MutableMapping
+
 import sqlite3 as sqlite
 from contextlib import contextmanager
 try:
@@ -48,7 +52,7 @@ class DbDict(MutableMapping):
         self.table_name = table_name
         self.fast_save = fast_save
         
-        #: Transactions can be commited if this property is set to `True`
+        #: Transactions can be committed if this property is set to `True`
         self.can_commit = True
 
         
@@ -148,6 +152,7 @@ class DbDict(MutableMapping):
             con.execute("drop table `%s`" % self.table_name)
             con.execute("create table `%s` (key PRIMARY KEY, value)" %
                         self.table_name)
+            con.execute("vacuum")
 
     def __str__(self):
         return str(dict(self.items()))
